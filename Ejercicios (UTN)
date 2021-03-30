@@ -1,0 +1,426 @@
+Ejercicio
+Escribir un programa que muestre por pantalla la frase ¡Hola mundo!
+
+print("¡Hola Mundo!")
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+Ejercicio
+Una panadería vende barras de pan a 3.49€ cada una. El pan que no es el día tiene un descuento del 60%. 
+Escribe un programa que comience leyendo el número de barras vendidas que no son del día. Después tu programa debe mostrar el precio habitual de una barra de pan, el descuento que se le hace por no ser fresca y el coste final total.
+
+barras = int(input("Introduce el número de barras vendidas que no son frescas: "))
+precio = 3.49 
+descuento = 0.6
+coste = barras * precio * (1 - descuento)
+print("El coste de una barra fresca es " + str(precio) + "€")
+print("El descuento sobre una barra no fresca es " + str(descuento * 100) + "%")
+print("El coste final a pagar es " + str(round(coste, 2)) + "€")
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+Ejercicio
+Imagina que acabas de abrir una nueva cuenta de ahorros que te ofrece el 4% de interés al año. Estos ahorros debido a intereses, que no se cobran hasta finales de año, se te añaden al balance final de tu cuenta de ahorros. Escribir un programa que comience leyendo la cantidad de dinero depositada en la cuenta de ahorros, introducida por el usuario. Después el programa debe calcular y mostrar por pantalla la cantidad de ahorros tras el primer, segundo y tercer años. Redondear cada cantidad a dos decimales.
+
+inversion = float(input("Introduce la inversión inicial: "))
+interes = 0.04
+balance1 = inversion * (1 + interes)
+print("Balance tras el primer año:" + str(round(balance1, 2)))
+balance2 = balance1 * (1 + interes)
+print("Balance tras el segundo año:" + str(round(balance2, 2)))
+balance3 = balance2 * (1 + interes)
+print("Balance tras el tercer año:" + str(round(balance3, 2)))
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+Ejercicio
+Escribir un programa que pregunte al usuario la fecha de su nacimiento en formato dd/mm/aaaa y muestra por pantalla, el día, el mes y el año.
+
+fecha = input("Introduce la fecha de tu nacimiento en formato dd/mm/aaaa: ")
+print('Día', fecha[:2])
+print('Mes', fecha[3:5])
+print('Año', fecha[6:])
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+Ejercicio
+Escribir un programa que pregunte el nombre el un producto, su precio y un número de unidades y muestre por pantalla una cadena con el siguiente formato:
+
+<producto>: <unidades> unidades x <precio>€ = <total>€
+
+donde <unidades> es el número de unidades con cinco dígitos, <precio> es el precio unitario con 6 dígitos enteros y 2 decimales y <total> es el coste total con 8 dígitos enteros y 2 decimales.
+
+
+producto = input('Introduce el nombre del producto: ')
+precio = float(input('Introducde el precio unitario: '))
+unidades = int(input('Introduce el número de unidades: '))
+print('{producto}: {unidades:3d} unidades x {precio:9.2f}€ = {total:11.2f}€'.format(producto = producto, unidades = unidades, precio = precio, total = unidades * precio))
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+Ejercicio
+Escribir un programa que almacene la cadena de caracteres contraseña en una variable, pregunte al usuario por la contraseña e imprima por pantalla si la contraseña introducida por el usuario coincide con la guardada en la variable sin tener en cuenta mayúsculas y minúsculas.
+
+key = "contraseña"
+password = input("Introduce la contraseña: ")
+if key == password.lower():
+    print("La contaseña coincide")
+else:
+    print("La contraseña no coincide")
+  
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+Ejercicio
+Los alumnos de un curso se han dividido en dos grupos A y B de acuerdo al sexo y el nombre. El grupo A esta formado por las mujeres con un nombre anterior a la M y los hombres con un nombre posterior a la N y el grupo B por el resto. Escribir un programa que pregunte al usuario su nombre y sexo, y muestre por pantalla el grupo que le corresponde.
+
+name = input("¿Cómo te llamas? ")
+gender = input("¿Cuál es tu sexo (M o H)? ")
+if gender == "M":
+    if name.lower() < "m":
+        group = "A"
+    else:
+        group = "B"
+else:
+    if name.lower() > "n":
+        group = "A"
+    else:
+        group = "B"
+print("Tu grupo es " + group)
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+Ejercicio
+Escribir un programa en el que se pregunte al usuario por una frase y una letra, y muestre por pantalla el número de veces que aparece la letra en la frase.
+
+
+frase = input("Introduce una frase: ")
+letra = input("Introduce una letra")
+contador = 0
+for i in frase:
+    if i == letra:
+        contador += 1
+print("La letra '%s' aparece %2i veces en la frase '%s'." % (letra, contador, frase))
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+Ejercicio
+Escribir un programa que pida al usuario un número entero positivo y muestre por pantalla todos los números impares desde 1 hasta ese número separados por comas.
+
+n = int(input("Introduce un número entero positivo: "))
+for i in range(1, n+1, 2):
+    print(i, end=", ")
+    
+    
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+Ejercicio
+Escribir un programa que pregunte al usuario una cantidad a invertir, el interés anual y el número de años, y muestre por pantalla el capital obtenido en la inversión cada año que dura la inversión.
+
+amount = float(input("¿Cantidad a invertir? "))
+interest = float(input("¿Interés porcentual anual? "))
+years = int(input("¿Años?"))
+for i in range(years):
+    amount *= 1 + interest / 100 
+    print("Capital tras " + str(i+1) + " años: " + str(round(amount, 2)))
+    
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+Ejercicio
+Escribir un programa que pregunte por una muestra de números, separados por comas, los guarde en una tupla y muestre por pantalla su media y desviación típica.
+
+sample = input("Introduce una muestra de números separados por comas: ")
+sample = sample.split(',')
+n = len(sample)
+for i in range(n):
+    sample[i] = int(sample[i])
+sample = tuple(sample)
+sum = 0
+sumsq = 0
+for i in sample:
+    sum += i
+    sumsq += i**2
+mean = sum/n
+stdev = (sumsq/n-mean**2)**(1/2)
+print('La media es', mean, ', y la desviación típica es', stdev)
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+Ejercicio
+Escribir un programa que almacene las asignaturas de un curso (por ejemplo Matemáticas, Física, Química, Historia y Lengua) en una lista y la muestre por pantalla.
+
+subjects = ["Matemáticas", "Física", "Química", "Historia", "Lengua"]
+scores = []
+for subject in subjects:
+    score = input("¿Qué nota has sacado en " + subject + "?")
+    scores.append(score)
+for i in range(len(subjects)):
+    print("En " + subjects[i] + " has sacado " + scores[i])
+    
+    
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+Ejercicio
+Escribir un programa que almacene las asignaturas de un curso (por ejemplo Matemáticas, Física, Química, Historia y Lengua) en una lista, pregunte al usuario la nota que ha sacado en cada asignatura y elimine de la lista las asignaturas aprobadas. Al final el programa debe mostrar por pantalla las asignaturas que el usuario tiene que repetir.
+
+subjects = ["Matemáticas", "Física", "Química", "Historia", "Lengua"]
+passed = []
+for subject in subjects:
+    score = float(input("¿Qué nota has sacado en " + subject + "?"))
+    if score >= 5:
+        passed.append(subject)
+for subject in passed:
+    subjects.remove(subject)
+print("Tienes que repetir " + str(subjects))
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Ejercicio
+Escribir un programa que almacene en una lista los siguientes precios, 50, 75, 46, 22, 80, 65, 8, y muestre por pantalla el menor y el mayor de los precios.
+
+
+prices = [50, 75, 46, 22, 80, 65, 8]
+min = max = prices[0]
+for price in prices:
+    if price < min:
+        min = price
+    elif price > max:
+        max = price 
+print("El mínimo es " + str(min)) 
+print("El máximo es " + str(max))
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Ejercicio
+Escribir un programa que permita gestionar la base de datos de clientes de una empresa. Los clientes se guardarán en un diccionario en el que la clave de cada cliente será su NIF, y el valor será otro diccionario con los datos del cliente (nombre, dirección, teléfono, correo, preferente), donde preferente tendrá el valor True si se trata de un cliente preferente. El programa debe preguntar al usuario por una opción del siguiente menú: (1) Añadir cliente, (2) Eliminar cliente, (3) Mostrar cliente, (4) Listar todos los clientes, (5) Listar clientes preferentes, (6) Terminar. En función de la opción elegida el programa tendrá que hacer lo siguiente:
+
+Preguntar los datos del cliente, crear un diccionario con los datos y añadirlo a la base de datos.
+Preguntar por el NIF del cliente y eliminar sus datos de la base de datos.
+Preguntar por el NIF del cliente y mostrar sus datos.
+Mostrar lista de todos los clientes de la base datos con su NIF y nombre.
+Mostrar la lista de clientes preferentes de la base de datos con su NIF y nombre.
+Terminar el programa.
+
+
+clientes = {}
+opcion = ''
+while opcion != '6':
+    if opcion == '1':
+        nif = input('Introduce NIF del cliente: ')
+        nombre = input('Introduce el nombre del cliente: ')
+        direccion = input('Introduce la dirección del cliente: ')
+        telefono = input('Introduce el teléfono del cliente: ')
+        email = input('Introduce el correo electrónico del cliente: ')
+        vip = input('¿Es un cliente preferente (S/N)? ')
+        cliente = {'nombre':nombre, 'dirección':direccion, 'teléfono':telefono, 'email':email, 'preferente':vip=='S'}
+        clientes[nif] = cliente
+    if opcion == '2':
+        nif = input('Introduce NIF del cliente: ')
+        if nif in clientes:
+            del clientes[nif]
+        else:
+            print('No existe el cliente con el nif', nif)
+    if opcion == '3':
+        nif = input('Introduce NIF del cliente: ')
+        if nif in clientes:
+            print('NIF:', nif)
+            for clave, valor in clientes[nif].items():
+                print(clave.title() + ':', valor)
+        else:
+            print('No existe el cliente con el nif', nif)
+    if opcion == '4':
+        print('Lista de clientes')
+        for clave, valor in clientes.items():
+            print(clave, valor['nombre'])
+    if opcion == '5':
+        print('Lista de clientes preferentes')
+        for clave, valor in clientes.items():
+            if valor['preferente']:
+                print(clave, valor['nombre'])
+    opcion = input('Menú de opciones\n(1) Añadir cliente\n(2) Eliminar cliente\n(3) Mostrar cliente\n(4) Listar clientes\n(5) Listar clientes preferentes\n(6) Terminar\nElige una opción:')
+    
+    
+    
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+Ejercicio
+Escribir un programa que pregunte al usuario su nombre, edad, dirección y teléfono y lo guarde en un diccionario. Despúes debe mostrar por pantalla el mensaje <nombre> tiene <edad> años, vive en <dirección> y su número de teléfono es <teléfono>.
+
+nombre = input('¿Cómo te llamas? ')
+edad = input('¿Cuántos años tienes? ')
+direccion = input('¿Cuál es tu dirección? ')
+telefono = input('¿Cuál es tu número de teléfono? ')
+persona = {'nombre': nombre, 'edad': edad, 'direccion': direccion, 'telefono': telefono}
+print(persona['nombre'], 'tiene', persona['edad'], 'años, vive en', persona['direccion'], 'y su número de teléfono es', persona['telefono'])
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+Ejercicio
+Escribir un programa que almacene el diccionario con los créditos de las asignaturas de un curso {'Matemáticas': 6, 'Física': 4, 'Química': 5} y después muestre por pantalla los créditos de cada asignatura en el formato <asignatura> tiene <créditos> créditos, donde <asignatura> es cada una de las asignaturas del curso, y <créditos> son sus créditos. Al final debe mostrar también el número total de créditos del curso.
+
+curso = {'Matemáticas': 6, 'Física': 4, 'Química': 5}
+total_creditos = 0
+for asignatura, creditos in curso.items():
+    print(asignatura, 'tiene', creditos, 'créditos')
+    total_creditos += creditos
+print('Número total de créditos del curso: ', total_creditos)
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+Ejercicio
+Escribir un programa que reciba una cadena de caracteres y devuelva un diccionario con cada palabra que contiene y su frecuencia. Escribir otra función que reciba el diccionario generado con la función anterior y devuelva una tupla con la palabra más repetida y su frecuencia.
+
+def count_words(text):
+    """Función que cuenta el número de veces que aparece cada palabra en un texto.
+    Parámetros:
+        - text: Es una cadena de caracteres.
+    Devuelve: 
+        Un diccionario con pares palabra:frecuencia con las palabras contenidas en el texto y su frecuencia.
+    """
+    text = text.split()
+    words = {}
+    for i in text:
+        if i in words:
+            words[i] += 1
+        else:
+            words[i] = 1
+    return words
+
+def most_repeated(words):
+    max_word = ''
+    max_freq = 0
+    for word, freq in words.items():
+        if freq > max_freq:
+            max_word = word
+            max_freq = freq
+    return max_word, max_freq
+
+text = 'Como quieres que te quiera si el que quiero que me quiera no me quiere como quiero que me quiera'
+print(count_words(text))
+print(most_repeated(count_words(text)))
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+Ejercicio
+Escribir una función reciba un diccionario con la las asignaturas y las notas de un alumno y devuelva otro diccionario con las asignaturas en mayúsculas y las calificaciones correspondientes a las notas aprobadas.
+
+def grade(score):
+    '''
+    Función que devuelve la calificación correspondiente a una nota.
+    Parámetros:
+        score: Es un valor real entre 0 y 10.
+    Devuelve:
+        La calificación correspondiente a la nota score.
+    '''
+    if score < 5:
+        return 'SS'
+    elif score < 7:
+        return 'AP'
+    elif score < 9:
+        return 'NT'
+    elif score < 10:
+        return 'SB'
+    else:
+        return 'MH'
+
+def passed_subject(subject):
+    '''
+    Función que recibe una tupla con una asignatura y su nota y devuelve True si la asignatura está aprobada o False si está suspensa.abs
+    Parámetros:
+        subject: Es una tupla (asignatura, nota) donde nota es un valor real entre 0 y 10.
+    Devuelve: True si la nota es mayor o igual que 5 y False si no.abs
+    '''
+    return (subject[1] >= 5)
+
+
+def apply_grade(scores):
+    '''
+    Función que recibe un diccionario de asignaturas y notas y devuelve otro con las asignaturas en mayúsculas y las calificaciones correspondientes a las notas.
+    Parámetros:
+        scores: Es un diccionario con pares asignatura:nota donde nota es un valor real entre 0 y 10.
+    Devuelve
+        Un diccionario con pares ASIGNATURA:calificación, donde calificación es la calificación correspondiente a la nota de la asignatura.
+    '''
+    passed = dict(filter(passed_subject, scores.items()))
+    subjects = map(str.upper, passed.keys())
+    grades = map(grade, passed.values())
+    return dict(zip(subjects, grades))
+
+print(apply_grade({'Matemáticas':6.5, 'Física':5, 'Química':3.4, 'Economía':8.2, 'Historia':9.7, 'Programación':10}))
+
+
+...................Otra solucion....................
+
+def grade(score):
+    '''
+    Función que devuelve la calificación correspondiente a una nota.
+    Parámetros:
+        score: Es un valor real entre 0 y 10.
+    Devuelve:
+        La calificación correspondiente a la nota score.
+    '''
+    if score < 5:
+        return 'SS'
+    elif score < 7:
+        return 'AP'
+    elif score < 9:
+        return 'NT'
+    elif score < 10:
+        return 'SB'
+    else:
+        return 'MH'
+
+def apply_grade(scores):
+    '''
+    Función que recibe un diccionario de asignaturas y notas y devuelve otro con las asignaturas en mayúsculas y las calificaciones correspondientes a las notas.
+    Parámetros:
+        scores: Es un diccionario con pares asignatura:nota donde nota es un valor real entre 0 y 10.
+    Devuelve
+        Un diccionario con pares ASIGNATURA:calificación, donde calificación es la calificación correspondiente a la nota de la asignatura.
+    '''
+    return {subject.upper():grade(score) for subject, score in scores.items() if score >= 5}
+
+print(apply_grade({'Matemáticas':6.5, 'Física':5, 'Química':3.4, 'Economía':8.2, 'Historia':9.7, 'Programación':10}))
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+Ejercicio
+Escribir una función que reciba otra función booleana y una lista, y devuelva otra lista con los elementos de la lista que devuelvan True al aplicarles la función booleana.
+
+def filtra_lista(funcion, lista):
+    '''Función que filtra los elementos de una lista que devuelven true al aplicarle una función booleana.
+
+    Parámetros:
+        - funcion: Es una función booleana (devuleve true o false)
+        - lista: Es una lista con valores que se pasarán como argumentos a funcion.
+    Devuelve:
+        Una lista con los elementos de la lista que devuelven true al aplicarles la función booleana.
+    '''
+    l = []
+    for i in lista:
+        if funcion(i):
+            l.append(i)
+    return l
+
+def par(n):
+    return n % 2 == 0
+
+print(filtra_lista(par, [1, 2, 3, 4, 5, 6]))
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+Ejercicio
+Definir la clase saludo con un método saludar que reciba un y muestre por pantalla hola <nombre>.
+
+# Definición de la clase saludo
+class saludo:
+    # Definición del método saludar
+    def saludar(self, nombre):
+        print('Hola', nombre)
+
+nombre = input('Introduce tu nombre: ')
+s = saludo()
+s.saludar(nombre)
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
